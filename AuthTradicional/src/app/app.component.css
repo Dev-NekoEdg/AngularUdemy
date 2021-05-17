@@ -1,0 +1,14 @@
+.divContent{
+ margin: 0 15% 0 15%; 
+
+}
+
+.footer{
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+    bottom: 0px;
+    position: absolute;
+}
