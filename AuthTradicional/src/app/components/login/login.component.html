@@ -1,1 +1,32 @@
-<p>login works!</p>
+<!-- Formulario por template -->
+<div class="divLogin">
+  <div class="col-3" style="margin:0px auto;">
+    <form #loginForm="ngForm" 
+          (ngSubmit)="login(loginForm)">
+      <div class="mb-3">
+        <img src="assets/img/logo.png" class="rounded mx-auto d-block" alt="...">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input type="text" class="form-control" placeholder="Usuario" required [(ngModel)]="userModel.userName"
+         name="user" />
+         <span *ngIf="loginForm.submitted && loginForm.controls['user'].errors" class="text-danger">Usuario es obligatorio</span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" required placeholder="Password" [(ngModel)]="userModel.password"
+          name="pass" />
+          <span *ngIf="loginForm.submitted && loginForm.controls['pass'].errors" class="text-danger">Usuario es obligatorio</span>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Login</button>
+      </div>
+    </form>
+    <div class="mb-3">
+      <p class="text-muted">
+        ¿No estás registrado?<br />
+        Registrate <a class="text-reset" routerLink="/register">aqu&iacute;</a>.
+      </p>
+    </div>
+  </div>
+</div>

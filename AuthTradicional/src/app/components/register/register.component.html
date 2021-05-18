@@ -1,0 +1,77 @@
+<div>
+    <form #registerForm="ngForm" (ngSubmit)="registrar(registerForm)">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" placeholder="Pepito" required [(ngModel)]="registModel.name"
+                    name="name" />
+                <span *ngIf="registerForm.submitted && registerForm.controls['name'].errors" class="text-danger">Usuario
+                    es
+                    obligatorio</span>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" placeholder="Perez" required [(ngModel)]="registModel.lastName"
+                    name="lastName" />
+                <span *ngIf="registerForm.submitted && registerForm.controls['lastName'].errors"
+                    class="text-danger">Usuario es
+                    obligatorio</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Nombre Usuario</label>
+                <input type="text" class="form-control" placeholder="PepitoPerez123" required
+                    [(ngModel)]="registModel.userName" name="userName" />
+                <span *ngIf="registerForm.submitted && registerForm.controls['userName'].errors" class="text-danger">
+                    Nombre de Usuario es obligatorio</span>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Email" required [(ngModel)]="registModel.email"
+                    name="email" />
+                <span *ngIf="registerForm.submitted && registerForm.controls['email'].errors" class="text-danger">
+                    El Email es obligatorio.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Password" required
+                    [(ngModel)]="registModel.password" name="password" />
+                <span *ngIf="registerForm.submitted && registerForm.controls['password'].errors" class="text-danger">
+                    El password es obligatorio.</span>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Confirmar Password</label>
+                <input type="password" class="form-control" placeholder="Password" required
+                    [(ngModel)]="registModel.confirmPass" name="confirmPass" />
+                <span *ngIf="registerForm.submitted && registerForm.controls['confirmPass'].errors" class="text-danger">
+                    Confirmar la password es obligatorio.</span>
+                <span
+                    *ngIf="registerForm.submitted && registerForm.controls['confirmPass'].value !== registerForm.controls['password'].value"
+                    class="text-danger">
+                    Los Passwords no coinciden.</span>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted">
+                    ¿Ya estás registrado?<br />
+                    Ingresa <a class="text-reset" routerLink="/login">aqu&iacute;</a>.
+                </p>
+            </div>
+        </div>
+    </form>
+</div>

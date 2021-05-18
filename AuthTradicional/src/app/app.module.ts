@@ -8,6 +8,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { StudentsComponent } from './components/students/students.component';
 import { ProfessorComponent } from './components/professor/professor.component';
 import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { LoginComponent } from './components/login/login.component';
     MenuComponent,
     StudentsComponent,
     ProfessorComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
