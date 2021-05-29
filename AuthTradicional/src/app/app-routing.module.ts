@@ -5,9 +5,10 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfessorComponent } from './components/professor/professor.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StudentsComponent } from './components/students/students.component';
+import { AuthGuardGuard } from './securtity/auth-guard.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [ AuthGuardGuard ] },
   { path: 'professor', component: ProfessorComponent },
   { path: 'student', component: StudentsComponent},
   { path: 'login', component: LoginComponent },

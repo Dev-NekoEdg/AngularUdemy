@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiLoginService } from 'src/app/services/api-login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public token: string | null;
 
-  ngOnInit(): void {
+  constructor(
+    private service: ApiLoginService,
+    private router: Router
+  ) {
+
+    this.token = localStorage.getItem('token');
+
   }
 
+  ngOnInit(): void {
+
+
+  }
+
+  logout(): void {
+    this.service.destroyToken();
+    this.router.navigate(['login']);
+  }
+
+  pruebas(): void {
+    if (!this.service.getPayloadFromTokem()) {
+      this.router.navigate(['login']);
+    }
+  }
 }
