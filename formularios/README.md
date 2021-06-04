@@ -18,3 +18,10 @@ botones de submit.
 * expresión regular para email desde Html pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 
 *  unshift(): Método para insertar en arreglos en la pocision 0.
+
+## Froms reactives
+
+* FormsModule es para trabajart con formularios con template y para trabajar con formularios reactivos es ReactiveFormsModule. Ambos están en @angular/forms
+* Con los reactivo no se travaja en NgModel se coloca la propiedad de formControlName y se le iguala a las propiedades del objeto FormGroup del TS.
+* FormGroup.setValue() es obligatorio colocar un objeto con cada propiedad del formulario y colocarle su respectivo valor
+* FormGroup.reset() no necesita colocar todas las propiedades del formulario. Es buenos para setear y colocar algunos valores por defecto.
