@@ -35,6 +35,39 @@
     </div>
   </div>
 
+  <div class="form-group row m-1">
+    <label class="col-2 col-form-label">nick name (nombre usuario)</label>
+    <div class="col-8">
+
+      <input class="form-control" type="text" placeholder="usuario" formControlName="usuario"
+        [class.is-invalid]="validatorUsuario">
+      <small class="text-danger" *ngIf="validatorUsuario">Usuario ya registrado.</small>
+    </div>
+  </div>
+
+  <div class="form-group row m-1">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-8">
+
+      <input class="form-control" type="password" placeholder="contraseña" formControlName="passOne"
+      [class.is-invalid]="validatorPassOne"
+      
+        >
+      <!-- <small class="text-danger" *ngIf="validatorEmail">Formato correo invalido.</small> -->
+    </div>
+  </div>
+
+  <div class="form-group row m-1">
+    <label class="col-2 col-form-label">Valida Password</label>
+    <div class="col-8">
+
+      <input class="form-control" type="password" placeholder="valide contraseña" formControlName="passTwo"
+      [class.is-invalid]="validatorPassTwo"
+        >
+      <small class="text-danger" *ngIf="validatorEmail">las contraseñas no coinciden.</small>
+    </div>
+  </div>
+
   <div class="form-group row m-1" formGroupName="direccion">
     <label class="col-2 col-form-label">Dirreción</label>
     <div class="col-8">

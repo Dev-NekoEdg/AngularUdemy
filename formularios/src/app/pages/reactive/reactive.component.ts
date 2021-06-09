@@ -19,6 +19,7 @@ export class ReactiveComponent implements OnInit {
   ) {
     this.forma = this.inicializarFormulario();
     this.loadForm();
+    this.createListeners();
   }
 
   // el ngOnInit se ejecuta después de coonstruir el Html.
@@ -37,6 +38,11 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get('correo')?.invalid && this.forma.get('correo')?.touched;
   }
 
+  get validatorUsuario() {
+    return this.forma.get('usuario')?.invalid && this.forma.get('usuario')?.touched;
+
+  }
+
   get validatorDistrict() {
     return this.forma.get('direccion.distrito')?.invalid && this.forma.get('direccion.distrito')?.touched;
   }
@@ -49,6 +55,17 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get('hobbies') as FormArray;
   }
 
+  get validatorPassOne() {
+    return this.forma.get('passOne')?.invalid && this.forma.get('passOne')?.touched;
+  }
+
+  get validatorPassTwo() {
+    const passBase = this.forma.get('passOne')?.value;
+    const passValid = this.forma.get('passTwo')?.value;
+
+    return (passBase === passValid) ? false : true;
+  }
+
 
   inicializarFormulario(): FormGroup {
 
@@ -57,15 +74,22 @@ export class ReactiveComponent implements OnInit {
       ciudad: ['', Validators.required]
     });
 
+    // validaciones asincronas son el 3er argumento de los controles.
     return this.formBuilder.group({
       // 0. valor por defecto; 1. validaciones
       nombre: ['', [Validators.required, Validators.minLength(5)]],
-      apellido: ['', [Validators.required, this.service.noPruebas] ],
+      apellido: ['', [Validators.required, this.service.noPruebas]],
       correo: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      usuario: ['', , this.service.userExist],
       direccion: direccion,
+      passOne: ['', Validators.required],
+      passTwo: ['', Validators.required],
       // Arreglo de objetos en formularios.
       hobbies: this.formBuilder.array([])
-    });
+    }, {
+      validators: this.service.passwordIguales('passOne', 'passTwo')
+    }
+    );
 
   }
 
@@ -76,6 +100,8 @@ export class ReactiveComponent implements OnInit {
       nombre: "lolito",
       apellido: "lol",
       correo: "prueba@pruebas.com",
+      passOne: "123456",
+      passTwo: "123456",
       direccion: {
         distrito: "calle 65 no 123",
         ciudad: "bogota"
@@ -87,7 +113,7 @@ export class ReactiveComponent implements OnInit {
     this.arrayHobbies.push(this.formBuilder.control('', Validators.required));
   }
 
-  borrarHobbie(index:number){
+  borrarHobbie(index: number) {
     this.arrayHobbies.removeAt(index);
   }
 
@@ -118,5 +144,16 @@ export class ReactiveComponent implements OnInit {
     //this.forma.reset({ correo: 'pruebas@pruebas.com' });
 
   }
+
+  createListeners() {
+    // this.forma.valueChanges.subscribe((valor)=>{
+    //   console.log(valor);
+    // });
+
+    //this.forma.statusChanges.subscribe(status => console.log(status));
+
+    this.forma.get('nombre')?.valueChanges.subscribe(value => console.log(value));
+
+    }
 
 }

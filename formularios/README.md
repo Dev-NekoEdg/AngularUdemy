@@ -13,7 +13,7 @@ botones de submit.
 
 ## notas de formulario por Template
 
-* cuando un input tiene la propiedad de ngModel se agregan las clases de ng-valid(indica si es valido), ng-touched/untouched  y ng-prestine/dirty(indica si el usuario modifico el control en el textchanged) 
+* cuando un input tiene la propiedad de ngModel se agregan las clases de ng-valid(indica si es valido), ng-touched/untouched  y ng-prestine/dirty(indica si el input tiene un valor inicial y que no ha sido modificado) 
 
 * expresión regular para email desde Html pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 
